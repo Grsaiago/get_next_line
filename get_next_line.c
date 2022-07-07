@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:23:26 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/05 17:47:16 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/06 18:56:38 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,41 +17,70 @@
 
 #define BUFFER_SIZE 30
 
-size_t ft_stoplen(const char *str);
-
 char	*get_next_line(int fd)
 {
 	static char	*sptr;
-	char		aux[31];
 	char		*auxptr;
 	char		*rptr;
 
+	auxptr = ft_calloc(BUFFER_SIZE + 1, 1);
 	while (1)
 	{
-		if (ft_strchr(sptr, '\n'))
+		read(fd, auxptr, BUFFER_SIZE);
+		if (ft_strchr(sptr, '\n')) 
+		// FAZER UM STRCHR QUE PROCURE POR UM /0 EM ATÉ BUFFER SIZE - 1 BYTES DENTRO DO AUXPTR
 			break ;
-		read(fd, aux, BUFFER_SIZE);
-		auxptr = ft_strjoin(sptr, aux);
+		sptr = ft_strjoin(sptr, auxptr);
 	}
-	sptr = ft_substr(auxptr, ft_strchr(auxptr, '\n') - sptr + 1, ft_strlen(auxptr));
-	rptr = ft_substr(auxptr, 0, ft_strchr(auxptr, '\n') - auxptr);
-	free (auxptr);
+	if ()
+	{
+		free(auxptr);
+		free(sptr);
+		return (NULL);
+	}
+	free(auxptr);
+	auxptr = ft_strdup(sptr);
+	rptr = ft_substr_gnl(auxptr, 0, ft_strchr(auxptr, '\n') - auxptr);
+	sptr = ft_substr(sptr, (ft_strchr(sptr, '\n') - sptr) + 1, ft_strlen(sptr));
 	return (rptr);
-
 }
 
-size_t ft_stoplen(const char *str)
+char	*ft_substr_gnl(char *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	char	*str;
+	size_t	lens;
 
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
+	if (!s)
+		return (NULL);
+	lens = ft_strlen(s);
+	if (start >= lens)
+		return (ft_strdup(""));
+	if ((start + len) > lens)
+		len = lens - start;
+	if (ft_nchr(s) == 1)
+		str = ft_calloc(len + 1, 1);
+	else 
+	{
+		str = ft_calloc(len + 2, 1);
+		str[len] = '\n';
+	}
+	if (!str)
+		return (NULL);
+	ft_memmove(str, &((char *)s)[start], len);
+	free(s);
+	return (str);
 }
 int	main(void)
 {
 	int		fd = open("./arquivo",O_RDONLY);
-
-	printf("%s",get_next_line(fd));
+	int 	i = 2;
+	char	*ptr = "1";
+	while (1)
+	{
+		ptr = get_next_line(fd);
+		if (!ptr)
+			break ;
+		printf("%s", ptr);
+	}
 }
+

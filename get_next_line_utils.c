@@ -6,17 +6,17 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/05 17:46:10 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/06 17:36:14 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_chr(const char *s);
+int		ft_nchr(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *s, int c);
 void	*ft_memmove(void *dst,	const void *src, size_t len);
@@ -119,7 +119,7 @@ size_t	ft_strlen(const char *c)
 	return (i);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	lens;
