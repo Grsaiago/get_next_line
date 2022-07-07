@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/06 17:36:14 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/07 11:59:32 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
+}
+
+int	ft_find_zero(const char *s, long int limit)
+{
+	int	i;
+
+	i = 0;
+	while (i < limit - 1)
+	{
+		if (!*s)
+			return (1);
+		s++;
+		i++;
+	}
+	return (0);
 }
 
 int	ft_nchr(const char *s)

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:23:26 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/06 18:56:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/07 18:17:24 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BUFFER_SIZE 30
+#define BUFFER_SIZE 2
 
 char	*get_next_line(int fd)
 {
 	static char	*sptr;
 	char		*auxptr;
 	char		*rptr;
+	int			valid;
 
+	valid = 1;
 	auxptr = ft_calloc(BUFFER_SIZE + 1, 1);
-	while (1)
+	while (valid == 1)
 	{
-		read(fd, auxptr, BUFFER_SIZE);
-		if (ft_strchr(sptr, '\n')) 
+		if (ft_strchr(sptr, '\n'))
 		// FAZER UM STRCHR QUE PROCURE POR UM /0 EM ATÉ BUFFER SIZE - 1 BYTES DENTRO DO AUXPTR
 			break ;
+		valid = read(fd, auxptr, BUFFER_SIZE);
 		sptr = ft_strjoin(sptr, auxptr);
 	}
-	if ()
+	if (valid <= 0)
 	{
 		free(auxptr);
 		free(sptr);
@@ -79,8 +81,12 @@ int	main(void)
 	{
 		ptr = get_next_line(fd);
 		if (!ptr)
+		{
+			free(ptr);
 			break ;
+		}
 		printf("%s", ptr);
+		free(ptr);
 	}
 }
 
