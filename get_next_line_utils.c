@@ -6,17 +6,17 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/07 11:59:32 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/08 17:50:30 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 int		ft_nchr(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *c);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_substr_gnl(char *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *s, int c);
 void	*ft_memmove(void *dst,	const void *src, size_t len);
@@ -80,7 +80,7 @@ int	ft_nchr(const char *s)
 	return (1);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -88,9 +88,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 
 	if (!s1)
-		return (ft_strdup(s2));
+		return (s2);
 	if (!s2)
-		return (ft_strdup(s1));
+		return (s1);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
 	count = 0;
@@ -104,6 +104,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	while (--j >= 0)
 		str[count + j] = s2[j];
+	free(s1);
+	free(s2);
 	return (str);
 }
 

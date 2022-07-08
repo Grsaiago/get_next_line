@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:49:43 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/06 17:49:19 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/08 15:07:28 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 char	*get_next_line(int fd);
 int		ft_nchr(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
