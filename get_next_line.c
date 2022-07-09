@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:23:26 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/08 17:50:35 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/09 18:55:06 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,28 @@ char	*get_next_line(int fd)
 	char		*rptr;
 	int			valid;
 	
-	valid = 1;
 	if (fd < 0)
 		return (NULL);
-	while (valid > 0)
+	valid = 1;
+	if (!sptr)
+		sptr = ft_strdup("");
+	while (valid && !ft_strchr(sptr, '\n'))
 	{
-		auxptr = ft_calloc(BUFFER_SIZE + 1, 1);
-		if (ft_strchr(sptr, '\n'))
-		{
-			free(auxptr);
-			break ;
-		}
+		auxptr = ft_calloc(1, BUFFER_SIZE + 1);
 		valid = read(fd, auxptr, BUFFER_SIZE);
-		sptr = ft_strjoin_gnl(sptr, auxptr);
+//		if (valid < 0)
+//			return (free_all());
+		if (auxptr[0])
+			sptr = ft_strjoin_gnl(sptr, auxptr);
 	}
-	if (valid < 0)
+	if (sptr)
 	{
-		free(auxptr);
-		free(sptr);
-		return (NULL);
+		auxptr = ft_strdup(sptr);
+		rptr = ft_substr_gnl(auxptr, 0, ft_strchr(auxptr, '\n') - auxptr);
+		sptr = ft_substr_gnl(sptr, (ft_strchr(sptr, '\n') - sptr) + 1, ft_strlen(sptr));
 	}
-	auxptr = ft_strdup(sptr);
-	rptr = ft_substr_gnl(auxptr, 0, ft_strchr(auxptr, '\n') - auxptr);
-	sptr = ft_substr_gnl(sptr, (ft_strchr(sptr, '\n') - sptr) + 1, ft_strlen(sptr));
+	else
+		return (NULL);
 	return (rptr);
 }
 
@@ -84,9 +83,19 @@ int	main(void)
 {
 	int		fd = open("./arquivo",O_RDONLY);
 	char	*ptr;
-
+	ptr = get_next_line(fd);
+	printf("%s", ptr);
+	free(ptr);
+	ptr = get_next_line(fd);
+	printf("%s", ptr);
+	free(ptr);
+	ptr = get_next_line(fd);
+	printf("%s", ptr);
+	free(ptr);
+	ptr = get_next_line(fd);
+	printf("%s", ptr);
+	free(ptr);
 	ptr = get_next_line(fd);
 	printf("%s", ptr);
 	free(ptr);
 }
-
