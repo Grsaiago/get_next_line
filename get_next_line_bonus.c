@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:03 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/11 20:23:12 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:59:01 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,39 @@
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 10
 #endif
-
+#include <stdio.h>
 char	*get_next_line(int fd)
 {
 	int			valid;
-	static char	*sptr;
+	static char	*sptr[65536];
 	char		*rptr;
 	char		*auxptr;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 	{
-		if(sptr)
-			free(sptr);
+		free(sptr[fd]);
 		return (NULL);
 	}
-	if (!sptr)
-		sptr = ft_strdup("");
+	if (!sptr[fd])
+		sptr[fd] = ft_strdup("");
 	valid = 1;
-	while (valid && !ft_strchr(sptr, '\n'))
+	while (valid && !ft_strchr(sptr[fd], '\n'))
 	{
 		auxptr = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 		valid = read(fd, auxptr, BUFFER_SIZE);
 		if (valid < 0)
 		{
+			free(sptr[fd]);
 			free(auxptr);
 			return (NULL);
 		}
 		if (valid > 0)
-			sptr = ft_strjoin_gnl(sptr, auxptr);
+			sptr[fd] = ft_strjoin_gnl(sptr[fd], auxptr);
 		else
 			free(auxptr);
 	}
-	rptr = ft_returnptr(sptr);
-	sptr = ft_staticptr(sptr);
+	rptr = ft_returnptr(sptr[fd]);
+	sptr[fd] = ft_staticptr(sptr[fd]);
 	return (rptr);
 }
 
