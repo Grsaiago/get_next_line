@@ -6,19 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/12 14:50:22 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 17:03:19 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strdup(const char *s1);
-size_t	ft_strlen(const char *c);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-char	*ft_staticptr(char *buffer);
-char	*ft_returnptr(char *buffer);
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -114,57 +106,4 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (str);
-}
-
-char	*ft_returnptr(char *buffer)
-{
-	int		i;
-	int		extra;
-	char	*str;
-
-	if (!buffer[0])
-		return (NULL);
-	extra = 1;
-	i = 0;
-	while (buffer[i] != '\n' && buffer[i])
-		i++;
-	if (buffer[i] == '\n')
-		extra = 2;
-	str = ft_calloc(sizeof(char), i + extra);
-	i = 0;
-	while (buffer[i] && (buffer[i] != '\n'))
-	{
-		str[i] = buffer [i];
-		i++;
-	}
-	if (extra == 2)
-		str[i] = '\n';
-	return (str);
-}
-
-char	*ft_staticptr(char *buffer)
-{
-	int		i;
-	char	*str;
-	int		j;
-
-	j = 0;
-	i = 0;
-	if (ft_strchr(buffer, '\n'))
-	{
-		while (buffer[i] != '\n')
-			i++;
-		i++;
-		str = ft_calloc(sizeof(char), (ft_strlen(buffer) - i + 1));
-		while (buffer[i + j])
-		{
-			str[j] = buffer[i + j];
-			j++;
-		}
-		free(buffer);
-		return (str);
-	}
-	else
-		free(buffer);
-	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:49:43 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/12 14:51:54 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:47:07 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+char	*ft_gnl(int valid, int fd, char *sptr);
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *c);
