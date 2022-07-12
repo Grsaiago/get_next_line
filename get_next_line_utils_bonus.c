@@ -6,13 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/12 14:21:56 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 14:50:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_nchr(const char *s);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *c);
 void	*ft_calloc(size_t count, size_t size);
@@ -20,7 +19,6 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_staticptr(char *buffer);
 char	*ft_returnptr(char *buffer);
-char	*ft_strchr(const char *s, int c);
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -44,26 +42,6 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
-}
-
-int	ft_nchr(const char *s)
-{
-	int		len;
-	int		i;
-
-	len = 0;
-	i = 0;
-	while (s[len])
-		len++;
-	len++;
-	while (i < len)
-	{
-		if (*s == '\n')
-			return (2);
-		s++;
-		i++;
-	}
-	return (1);
 }
 
 char	*ft_strdup(const char *s1)
@@ -109,26 +87,6 @@ void	*ft_calloc(size_t count, size_t size)
 	while (++i < n)
 		((char *)ptr)[i] = 0;
 	return (ptr);
-}
-
-void	*ft_memmove(void *dst,	const void *src, size_t len)
-{
-	size_t	i;
-
-	i = -1;
-	if (src == dst || len == 0)
-		return ((char *)dst);
-	if (src > dst)
-	{
-		while (++i < len)
-			((char *)dst)[i] = ((char *)src)[i];
-	}
-	if (src < dst)
-	{
-		while (len--)
-			((char *)dst)[len] = ((char *)src)[len];
-	}
-	return ((char *)dst);
 }
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
