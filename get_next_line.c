@@ -6,16 +6,14 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:03 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/11 20:23:12 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 14:35:53 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
 #endif
 
 char	*get_next_line(int fd)
@@ -27,7 +25,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 	{
-		if(sptr)
+		if (sptr)
 			free(sptr);
 		return (NULL);
 	}
@@ -52,22 +50,3 @@ char	*get_next_line(int fd)
 	sptr = ft_staticptr(sptr);
 	return (rptr);
 }
-
-/*
-int	main(void)
-{
-	char	*ptr;
-	int		fd;
-
-	fd = open("./arquivo",O_RDONLY);
-	ptr = get_next_line(fd);
-	printf("%s", ptr);
-	free(ptr);
-	ptr = get_next_line(fd);
-	printf("%s", ptr);
-	free(ptr);
-	ptr = get_next_line(fd);
-	printf("%s", ptr);
-	free(ptr);
-}
-*/

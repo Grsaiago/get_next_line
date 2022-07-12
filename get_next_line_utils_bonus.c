@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/11 20:22:43 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 14:21:56 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_nchr(const char *s)
 
 	len = 0;
 	i = 0;
-	while(s[len])
+	while (s[len])
 		len++;
 	len++;
 	while (i < len)
@@ -65,7 +65,6 @@ int	ft_nchr(const char *s)
 	}
 	return (1);
 }
-
 
 char	*ft_strdup(const char *s1)
 {
@@ -99,7 +98,7 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*ptr;
 	size_t	n;
 	size_t	i;
-		
+
 	if (count == 0 || size == 0)
 		return (NULL);
 	i = -1;
@@ -165,14 +164,14 @@ char	*ft_returnptr(char *buffer)
 	int		extra;
 	char	*str;
 
-	if(!buffer[0])
+	if (!buffer[0])
 		return (NULL);
 	extra = 1;
 	i = 0;
 	while (buffer[i] != '\n' && buffer[i])
 		i++;
-	 if (buffer[i] == '\n')
-		 extra = 2;
+	if (buffer[i] == '\n')
+		extra = 2;
 	str = ft_calloc(sizeof(char), i + extra);
 	i = 0;
 	while (buffer[i] && (buffer[i] != '\n'))

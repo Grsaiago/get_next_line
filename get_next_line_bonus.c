@@ -6,18 +6,16 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:03 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/11 20:59:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 14:36:06 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
 #endif
-#include <stdio.h>
+
 char	*get_next_line(int fd)
 {
 	int			valid;
@@ -52,22 +50,3 @@ char	*get_next_line(int fd)
 	sptr[fd] = ft_staticptr(sptr[fd]);
 	return (rptr);
 }
-
-/*
-int	main(void)
-{
-	char	*ptr;
-	int		fd;
-
-	fd = open("./arquivo",O_RDONLY);
-	ptr = get_next_line(fd);
-	printf("%s", ptr);
-	free(ptr);
-	ptr = get_next_line(fd);
-	printf("%s", ptr);
-	free(ptr);
-	ptr = get_next_line(fd);
-	printf("%s", ptr);
-	free(ptr);
-}
-*/
