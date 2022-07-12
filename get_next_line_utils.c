@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:53:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/12 14:45:44 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/07/12 14:54:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,6 @@ void	*ft_calloc(size_t count, size_t size)
 	while (++i < n)
 		((char *)ptr)[i] = 0;
 	return (ptr);
-}
-
-void	*ft_memmove(void *dst,	const void *src, size_t len)
-{
-	size_t	i;
-
-	i = -1;
-	if (src == dst || len == 0)
-		return ((char *)dst);
-	if (src > dst)
-	{
-		while (++i < len)
-			((char *)dst)[i] = ((char *)src)[i];
-	}
-	if (src < dst)
-	{
-		while (len--)
-			((char *)dst)[len] = ((char *)src)[len];
-	}
-	return ((char *)dst);
 }
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
