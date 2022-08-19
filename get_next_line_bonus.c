@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:03 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/07/12 17:03:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/08/19 17:47:26 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 char	*get_next_line(int fd)
 {
 	int			valid;
-	static char	*sptr[65536];
+	static char	*sptr[200];
 	char		*rptr;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
